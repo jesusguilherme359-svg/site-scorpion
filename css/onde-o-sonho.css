@@ -1,0 +1,121 @@
+/* Estilo para o botão de voltar */
+.btn-voltar {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'Rock Salt', cursive;
+    text-transform: none;
+    font-size: 1.1rem;
+    padding: 10px 28px;
+    background: linear-gradient(90deg, #a855f7 60%, #6d28d9 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px #a855f7cc;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 10;
+}
+.btn-voltar:hover {
+    background: linear-gradient(90deg, #6d28d9 60%, #a855f7 100%);
+    box-shadow: 0 4px 18px #a855f7ee;
+}
+/* Estilo para o botão/link do Google Maps */
+.btn-google-maps {
+    display: block;
+    text-align: center;
+    background: linear-gradient(90deg, #a855f7 60%, #6d28d9 100%);
+    color: #fff !important;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    margin: 10px auto 0 auto;
+    box-shadow: 0 2px 12px #a855f7cc;
+    font-family: 'Rock Salt', cursive;
+    text-transform: none;
+    font-size: 1.1rem;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-google-maps:hover {
+    background: linear-gradient(90deg, #6d28d9 60%, #a855f7 100%);
+    box-shadow: 0 4px 18px #a855f7ee;
+}
+/* Estilo para imagem do mapa de localização */
+.mapa-localizacao {
+    width: 100%;
+        max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #a855f7cc;
+    margin-bottom: 12px;
+}
+.texto-inspirador {
+    background: linear-gradient(135deg, #000000 60%, #000000 100%);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+    color: #fff;
+    border-radius: 14px;
+    padding: 24px 18px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15), 0 4px 24px 0 #a855f7cc;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 32px;
+
+}
+
+@media (max-width: 700px) {
+    .texto-inspirador {
+        max-width: 95vw;
+        font-size: 1rem;
+        padding: 16px 6vw;
+    }
+    .titulo-central {
+        font-size: 1.3em;
+        margin-top: 8vh;
+    }
+}
+body {
+    background-image: url('../img/fundo\ final.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.titulo-central {
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+    font-size: 2em;
+    font-family: 'Rock Salt', cursive;
+}
+
+.cabecalho-comeco {
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    min-height: 40vh;
+}
+
+
+.conteudo-centralizado {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin: 0 auto;
+}

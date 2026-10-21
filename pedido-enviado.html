@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Enviado</title>
+    <link rel="stylesheet" href="css/pedido-enviado.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pedido-enviado-container">
+        <h1 class="pedido-enviado-titulo">Seu pedido foi enviado ao centro de distribuição!</h1>
+        
+        <div class="info-rastreio">
+            <div class="rastreio-header">
+                <h2>Informações de Rastreio</h2>
+                <p class="numero-pedido">Pedido: <span id="numeroPedido">...</span></p>
+                <p class="codigo-rastreio">Código de Rastreio: <span id="codigoRastreio">...</span></p>
+            </div>
+
+            <div class="status-pedido">
+                <h3>Status do Pedido</h3>
+                <div class="timeline">
+                    <div class="status-item ativo">
+                        <span class="status-icon">✓</span>
+                        <div class="status-info">
+                            <h4>Pedido Confirmado</h4>
+                            <p>Seu pedido foi recebido e confirmado</p>
+                        </div>
+                    </div>
+                    <div class="status-item atual">
+                        <span class="status-icon">📦</span>
+                        <div class="status-info">
+                            <h4>Em Separação</h4>
+                            <p>Separando seus produtos no centro de distribuição</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-icon">🚚</span>
+                        <div class="status-info">
+                            <h4>Em Transporte</h4>
+                            <p>Seu pedido está a caminho</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-icon">📍</span>
+                        <div class="status-info">
+                            <h4>Entregue</h4>
+                            <p>Pedido entregue com sucesso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes-container">
+            <button class="uiverse-btn" onclick="window.location.href='index.html'">Voltar para a Home</button>
+            <button class="uiverse-btn rastreio-btn" onclick="atualizarStatus()">Atualizar Status</button>
+        </div>
+    </div>
+
+    <script>
+        // Recupera informações do pedido do localStorage
+        window.onload = function() {
+            const pedidoInfo = JSON.parse(localStorage.getItem('pedidoInfo'));
+            if (pedidoInfo) {
+                document.getElementById('numeroPedido').textContent = pedidoInfo.numeroPedido;
+                document.getElementById('codigoRastreio').textContent = pedidoInfo.codigoRastreio;
+            }
+        };
+
+        function atualizarStatus() {
+            // Simula uma atualização do status do pedido
+            fetch('api/status_pedido.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'codigo_rastreio=' + document.getElementById('codigoRastreio').textContent
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    atualizarTimelineStatus(data.status);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar status:', error);
+            });
+        }
+
+        function atualizarTimelineStatus(novoStatus) {
+            const statusItems = document.querySelectorAll('.status-item');
+            statusItems.forEach((item, index) => {
+                item.classList.remove('ativo', 'atual');
+                if (index < novoStatus) {
+                    item.classList.add('ativo');
+                } else if (index === novoStatus) {
+                    item.classList.add('atual');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

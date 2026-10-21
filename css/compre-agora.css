@@ -1,0 +1,108 @@
+body {
+    background-image: url('../img/fundo final.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Rock Salt', cursive;
+    color: #fff;
+}
+
+.compra-container {
+    background: rgba(17, 17, 17, 0.85);
+    max-width: 400px;
+    margin: 40px auto 0 auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px #a855f7a0, 0 1px 4px #0002;
+    padding: 36px 28px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compra-container h1 {
+    font-family: 'Rock Salt', cursive;
+    color: #fff;
+    margin-bottom: 24px;
+    font-size: 2rem;
+}
+
+.form-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.form-compra label {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.form-compra input,
+.form-compra select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background: #222;
+    color: #fff;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 4px #a855f7a0;
+}
+
+.form-compra input:focus,
+.form-compra select:focus {
+    outline: 2px solid #a855f7;
+    background: #181818;
+}
+
+.pagamento-opcoes {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 8px;
+}
+
+.pagamento-opcoes label {
+    font-size: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+}
+
+.parcelamento {
+    margin-bottom: 8px;
+}
+
+.uiverse-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, rgb(196, 59, 255) 0%, rgb(187, 0, 255) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #a855f7a0;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    margin-top: 18px;
+}
+.uiverse-btn:hover {
+    background: linear-gradient(135deg, rgb(143, 41, 246) 50%, rgb(255, 0, 251) 100%);
+    box-shadow: 0 8px 32px #a855f7cc;
+}
+
+@media (max-width: 600px) {
+    .compra-container {
+        max-width: 98vw;
+        padding: 18px 4vw;
+    }
+    .form-compra {
+        gap: 12px;
+    }
+    .uiverse-btn {
+        width: 100%;
+    }
+}

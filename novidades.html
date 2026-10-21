@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/novidades.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button class="uiverse-btn" onclick="window.location.href='index.html'" style="position: absolute; top: 20px; left: 20px; z-index: 1000;">Voltar</button>
+
+    <h1 class="novidades-titulo">Novidades
+
+    </h1>
+
+    <!-- Removed search input and button as per user request -->
+<div class="galeria-imagens">
+        <div class="linha-produtos" style="display: flex; gap: 64px; justify-content: center; margin-bottom: 40px;">
+                <div class="produto-card">
+                    <img src="img/camisa1.png" alt="camisa preta com desing azul nas costas" data-hover="img/">
+                    <p class="descricao">SCORPION ANGEL</p>
+                    <p class="preco">R$ 79,90</p>
+                    <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-limbo.html'">Ver mais</button>
+                    
+                </div>
+                <div class="produto-card">
+                    <img src="img/camisa 3.png" alt="camisa preta com desing roxo nas costas" data-hover="img/the-monster-of-scorpion.png">
+                    <p class="descricao">LIMBO.</p>
+                    <p class="preco">R$ 89,90</p>
+                    <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-themonster-of-scorpion.html'">Ver mais</button>
+                    
+                </div>
+                <div class="produto-card">
+                    <img src="img/camisa 2.png" alt="camisa preta com desing nas costas" data-hover="img/camisa frente 2.png">
+                    <p class="descricao" style="font-size: 1.1rem;">THE SCORPION WORLD</p>
+                    <p class="preco">R$ 99,90</p>
+                    <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-thescorpionworld.html'">Ver mais</button>
+                    
+                </div>
+    
+
+    <script>
+    // Animação de fade na troca de imagem dos cards
+    document.querySelectorAll('.produto-card img').forEach(function(img) {
+        var originalSrc = img.getAttribute('src');
+        var hoverSrc = img.getAttribute('data-hover');
+        if (!hoverSrc) return;
+        img.addEventListener('mouseover', function() {
+            img.classList.add('trocando');
+            setTimeout(function() {
+                img.src = hoverSrc;
+                img.classList.remove('trocando');
+            }, 350);
+        });
+        img.addEventListener('mouseout', function() {
+            img.classList.add('trocando');
+            setTimeout(function() {
+                img.src = originalSrc;
+                img.classList.remove('trocando');
+            }, 350);
+        });
+    });
+    </script>
+</body>
+</html>

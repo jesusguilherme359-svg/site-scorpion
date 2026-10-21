@@ -1,0 +1,66 @@
+body {
+    font-family: 'Baskerville', serif;
+    background: url('../img/fundo\ final.png') center center no-repeat;
+    background-size: cover;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    min-height: 100vh;
+    width: 300vw; /* Increased width for larger scrolling site */
+    padding-bottom: 120px;
+    display: block;
+}
+
+/* Card de produto com animação de hover para mostrar imagem alternativa */
+.produto-card {
+    background: #111;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #a855f7a0, 0 1px 4px #0002;
+    padding: 28px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 280px;
+    min-height: 340px;
+    width: 280px;
+    height: 340px;
+    transition: box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.produto-card:hover {
+    box-shadow: 0 16px 48px #a855f7cc, 0 4px 16px #0003;
+}
+.produto-card img {
+    width: 100%;
+    max-width: 280px;
+    height: 340px;
+    object-fit: cover;
+   
+    transition: opacity 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+.produto-card img.img-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.produto-card:hover img.img-hover {
+    opacity: 1;
+}
+.produto-card:hover img:not(.img-hover) {
+    opacity: 0;
+}
+
+
+

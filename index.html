@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)file:///c%3A/Users/Vanessa%20Arag%C3%A3o/OneDrive/%C3%81rea%20de%20Trabalho/EASY%20PORTIFOLIO/index.html -->
+<html lang="pt-br">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scorpion Street</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body, h2, h3, h4, h5, h6, p, a, button, .logo, .menu, .descricao, .preco {
+    font-family: 'Rock Salt', cursive;
+}
+.nav-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    padding: 12px 24px;
+}
+/* .hero h2 removido para aplicar Rock Salt corretamente */
+ /* From Uiverse.io by alexruix */
+ .group {
+    background: #111;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #a855f7a0, 0 1px 4px #0002;
+    padding: 28px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 220px;
+    min-height: 220px;
+    transition: box-shadow 0.3s;
+    position: relative;
+ }
+ .group:hover {
+    box-shadow: 0 16px 48px #a855f7cc, 0 4px 16px #0003;
+ }
+
+ .input {
+  width: 100%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #000000;
+  color: #0d0c22;
+  transition: .3s ease;
+ }
+
+.input-container button {
+  flex-basis: 25%;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgb(255, 212, 59) 0%, rgb(255, 102, 0) 100%);
+  box-shadow: 0px 0px 1px rgba(255, 212, 59, 0.5), 0px 0px 1px rgba(255, 102, 0, 0.5);
+  font-weight: 900;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  color: #23272F;
+  border: none;
+  width: 100%;
+  border-radius: 0 1rem 1rem 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-container button:hover {
+  background: linear-gradient(135deg, rgb(255, 212, 59) 50%, rgb(255, 102, 0) 100%);
+  box-shadow: 0px 0px 100px rgba(255, 212, 59, 0.5), 0px 0px 100px rgba(255, 102, 0, 0.5);
+}
+
+@media (max-width: 500px) {
+  .input-container {
+    flex-direction: column;
+  }
+
+  .input-container input {
+    border-radius: 0.8rem;
+  }
+
+  .input-container button {
+    padding: 1rem;
+    border-radius: 0.8rem;
+  }
+}
+ .input::placeholder {
+  color: #9e9ea7;
+ }
+
+ .input:focus, input:hover {
+  outline: none;
+  border-color: rgba(197, 76, 234, 0.4);
+  background-color: #000000;
+  box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+ }
+
+ .icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+ }
+
+ .search-card {
+    background: #111;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #a855f7a0, 0 1px 4px #0002;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    transition: box-shadow 0.3s;
+    margin-bottom: 20px;
+    gap: 10px;
+ }
+
+ .search-card:hover {
+    box-shadow: 0 16px 48px #a855f7cc, 0 4px 16px #0003;
+ }
+
+ .search-card input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #000;
+    color: rgb(253, 253, 253);
+    font-size: 16px;
+ }
+
+ .search-card button {
+    background: linear-gradient(135deg, rgb(51, 14, 86) 0%, rgb(59, 34, 78) 100%);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+ }
+
+ .search-card button:hover {
+    background: linear-gradient(135deg, rgb(168, 85, 247) 50%, rgb(168, 85, 247) 100%);
+ }
+
+ .profile-btn {
+    display: none; /* Inicialmente oculto */
+    background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .profile-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+ }
+
+ .profile-btn.visible {
+    display: inline-flex !important;
+ }
+</style>
+</head>
+<script>
+    const nome = localStorage.getItem('bemVindoNome');
+    window.addEventListener('DOMContentLoaded', function() {
+    if (nome) {
+            var h2 = document.getElementById('bemVindo');
+            h2.textContent = `Bem vindo(a), ${nome}!`;
+            localStorage.removeItem('bemVindoNome');
+            }
+        }
+);
+</script>
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 32px; gap: 32px;">
+    <div style="display: flex; align-items: center; gap: 32px;">
+        <div class="logo" style="margin-left: 0;">
+            <a href="index.html" style="color: inherit; text-decoration: none;">
+                <img src="img/logo_oficial-removebg-preview.png" alt="Scorpion Street Logo" style="height: 100px; width: auto; vertical-align: middle;">
+            </a>
+        </div>
+        <nav>
+            <ul style="display: flex; gap: 18px; margin: 0; list-style: none;">
+                <li><button class="nav-btn" onclick="window.location.href='novidades.html'">Novidades</button></li>
+                <li><button class="nav-btn" onclick="window.location.href='Coleção.html'">Coleção</button></li>
+                <li><button class="nav-btn" onclick="window.location.href='Sobrenos.html'">Sobre nós</button></li>
+            </ul>
+        </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px;">
+        <button id="loginBtn" class="nav-btn" onclick="window.location.href='login.html'" style="display: inline-block;">Login</button>
+        <button class="nav-btn" onclick="window.location.href='suporte.html'">Suporte</button>
+        <button id="carrinho-btn" class="nav-btn" style="position: relative;" onclick="window.location.href='carrinho.html'">
+            🛒 <span id="carrinho-count" style="background: #a855f7; color: #fff; border-radius: 50%; padding: 2px 8px; font-size: 0.9rem; position: absolute; top: -8px; right: -12px;">0</span>
+        </button>
+        <button id="profileBtn" class="profile-btn" onclick="window.location.href='perfil.html'" title="Perfil">
+            👤
+        </button>
+    </div>
+</header>
+
+<script>
+// Função para verificar o estado do login
+function verificarLogin() {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+    const profileBtn = document.getElementById('profileBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    if (usuarioLogado) {
+        // Usuário está logado
+        if (profileBtn) {
+            profileBtn.style.display = 'inline-flex';
+            profileBtn.classList.add('visible');
+        }
+        if (loginBtn) {
+            loginBtn.style.display = 'none';
+        }
+    } else {
+        // Usuário não está logado
+        if (profileBtn) {
+            profileBtn.style.display = 'none';
+            profileBtn.classList.remove('visible');
+        }
+        if (loginBtn) {
+            loginBtn.style.display = 'inline-block';
+        }
+    }
+}
+
+// Verificar o estado do login quando a página carrega
+window.addEventListener('load', function() {
+    verificarLogin();
+});
+
+// Verificar quando o DOM estiver completamente carregado
+document.addEventListener('DOMContentLoaded', function() {
+    verificarLogin();
+});
+
+// Verificar novamente após um breve delay para garantir que tudo foi carregado
+setTimeout(verificarLogin, 500);
+
+// Verificar periodicamente
+setInterval(verificarLogin, 2000);
+</script>
+        <section class="search-section">
+    <main>
+        <section class="hero">
+            <div class="search-card">
+                <input type="text" id="search-input" placeholder="Pesquisar produtos...">
+                <button id="search-btn" onclick="realizarPesquisa()">Buscar</button>
+            </div>
+            <h2 id="bemVindo" style="font-family: 'Rock Salt', cursive; white-space: nowrap;">Bem-vindo à Scorpion Street, sua nova marca dos sonhos</h2>
+            <p>Descubra a moda que define você.</p>
+        </section>
+
+<script>
+function realizarPesquisa() {
+    const searchInput = document.getElementById('search-input');
+    const termo = searchInput.value.toLowerCase().trim();
+
+    const paginas = {
+        'novidades': 'novidades.html',
+        'sobre nos': 'Sobrenos.html',
+        'sobre nós': 'Sobrenos.html',
+        'sobrenos': 'Sobrenos.html',
+        'coleção': 'coleção.html',
+        'colecao': 'coleção.html',
+        'suporte': 'suporte.html',
+        // Páginas de detalhes
+        'angel verde': 'detalhes-angelverde.html',
+        'dinheiro e veneno': 'detalhes-dinheiroeveneno.html',
+        'global': 'detalhes-global.html',
+        'limbo': 'detalhes-limbo.html',
+        'narcissist': 'detalhes-narcissist.html',
+        'remove the mask': 'detalhes-removethemask.html',
+        'scorpion': 'detalhes-scorpion.html',
+        'scorpion angel': 'detalhes-scorpionangel.html',
+        'scorpion gang': 'detalhes-scorpiongang.html',
+        'the boss': 'detalhes-theboss.html',
+        'the end': 'detalhes-theend.html',
+        'the scorpion world': 'detalhes-thescorpionworld.html',
+        'verde e rosa': 'detalhes-verdeerosa.html',
+        'the monster of scorpion': 'dethalhes-themonster-of-scorpion.html'
+    };
+
+    // Verifica se o termo de pesquisa corresponde a alguma página
+    for (let key in paginas) {
+        if (termo.includes(key)) {
+            window.location.href = paginas[key];
+            return;
+        }
+    }
+
+    // Se não encontrar correspondência exata, tenta encontrar parcial
+    for (let key in paginas) {
+        if (key.includes(termo) || termo.includes(key)) {
+            window.location.href = paginas[key];
+            return;
+        }
+    }
+
+    // Se não encontrar nenhuma correspondência
+    alert('Página não encontrada. Você pode pesquisar por:\n\n' +
+          '- Páginas principais: novidades, sobre nós, coleção, suporte\n' +
+          '- Produtos: angel verde, dinheiro e veneno, global, limbo, narcissist,\n' +
+          '  remove the mask, scorpion, scorpion angel, scorpion gang, the boss,\n' +
+          '  the end, the scorpion world, verde e rosa, the monster of scorpion');
+}
+
+// Adiciona evento de tecla Enter para realizar a pesquisa
+document.getElementById('search-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        realizarPesquisa();
+    }
+});
+</script>
+
+    <div class="galeria-imagens">
+        <div class="linha-produtos" style="display: flex; gap: 64px; justify-content: center; margin-bottom: 40px;">
+                <div class="produto-card">
+                    <img src="img/camisa1.png" alt="camisa preta com desing azul nas costas">
+                                    <img src="img/camisa frente 3.png" class="img-hover" alt="camisa alternativa" style="height: 180px; width: auto; left: 0; right: 0; top: 30%; position: absolute; transform: translateY(-50%); margin: 0 auto; display: block;">
+                    <p class="descricao">LIMBO.</p>
+                    <p class="preco">R$ 79 ,90</p>
+                   <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-limbo.html'">Ver mais</button>
+                   
+                </div>
+                <div class="produto-card">
+                    <img src="img/camisa 3.png" alt="camisa preta com desing roxo nas costas">
+                    <img src="img/camisa frente 1.png" class="img-hover" alt="camisa alternativa" style="height: 180px; width: auto; left: 0; right: 0; top: 30%; position: absolute; transform: translateY(-50%); margin: 0 auto; display: block;">
+                    <p class="descricao">SCORPION ANGEL.</p>
+                    <p class="preco">R$ 89 ,90</p>
+                <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-scorpionangel.html'">Ver mais</button>
+                
+                </div>
+                <div class="produto-card">
+                    <img src="img/camisa 2.png" alt="camisa preta com desing nas costas">
+                      <img src="img/camisa frente 2.png" class= "img-hover" alt="camisa alternativa" style="height: 180px; width: auto; left: 0; right: 0; top: 30%; position: absolute; transform: translateY(-50%); margin: 0 auto; display: block;">
+                   
+                    <p class="descricao" style="font-size: 1.1rem;">THE SCORPION WORLD</p>
+                    <p class="preco">R$ 99,90</p>
+ <button class="uiverse-btn" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="window.location.href='detalhes-thescorpionworld.html'">Ver mais</button>
+ 
+                </div>
+    </div>
+    </div>
+    <footer>
+        <script>
+        document.getElementById('search-btn').addEventListener('click', function() {
+            var valor = document.getElementById('search-input').value.toLowerCase();
+                    if(valor.includes('novidade')) {
+                        window.location.href = 'novidades.html';
+                    } else if(valor.includes('colecao') || valor.includes('coleção')) {
+                        window.location.href = 'Coleção.html';
+                    } else if(valor.includes('suporte')) {
+                        window.location.href = 'suporte.html';
+                    } else if(valor.includes('login')) {
+                        window.location.href = 'login.html';
+                    } else if(valor.includes('sobre nos') || valor.includes('sobre nós')) {
+                        window.location.href = 'Sobre nós.html';
+                    } else if(valor.trim() === "") {
+                        // alert('Digite algo para pesquisar!'); // Removed alert
+                    } else {
+                        // alert('Nenhum resultado encontrado para: ' + valor); // Removed alert
+                    }
+        });
+        </script>
+      
+    <!-- Modal do Carrinho -->
+    <div id="carrinho-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; border-radius:16px; max-width:400px; width:90%; padding:32px 24px; box-shadow:0 4px 24px #a855f7a0; position:relative;">
+            <h2 style="color:#a855f7; font-family:'Rock Salt',cursive; text-align:center;">Seu Carrinho</h2>
+            <ul id="carrinho-itens" style="list-style:none; padding:0; margin:24px 0;"></ul>
+            <button onclick="document.getElementById('carrinho-modal').style.display='none'" style="background:#a855f7; color:#fff; border:none; border-radius:8px; padding:10px 24px; font-family:'Bebas Neue',sans-serif; cursor:pointer;">Fechar</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Scorpion Street. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+    // Funcionalidade do botão de pesquisa
+    document.getElementById('search-btn').addEventListener('click', function() {
+        var valor = document.getElementById('search-input').value.toLowerCase();
+        if(valor.includes('novidade')) {
+            window.location.href = 'novidades.html';
+        } else if(valor.includes('colecao') || valor.includes('coleção')) {
+            window.location.href = 'Coleção.html';
+        } else if(valor.includes('suporte')) {
+            window.location.href = 'suporte.html';
+        } else if(valor.trim() === "") {
+            // alert('Digite algo para pesquisar!'); // Removed alert
+        } else {
+            // alert('Nenhum resultado encontrado para: ' + valor); // Removed alert
+        }
+    });
+    </script>
+<script>
+document.getElementById('form-pesquisa').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var valor = document.getElementById('campo-pesquisa').value.toLowerCase();
+    if (valor.includes('login')) {
+        window.location.href = 'login.html';
+    } else if (valor.includes('novidade')) {
+    window.location.href = 'novidades.html';
+    } else if (valor.includes('colecao') || valor.includes('coleção')) {
+        window.location.href = 'Coleção.html';
+    } else if (valor.includes('sobre nos')) {
+        window.location.href = 'pesquisa.html';
+    } else if (valor.includes('suporte')) {
+        window.location.href = 'suporte.html';
+    } else {
+        alert('Nenhum resultado encontrado para: ' + valor);
+    }
+});
+</script>
+</body></html>

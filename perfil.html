@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Scorpion Street</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body, h2, h3, h4, h5, h6, p, a, button, .logo, .menu {
+            font-family: 'Rock Salt', cursive;
+        }
+
+        .nav-btn {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            padding: 12px 24px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #a855f7a0;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2d1b3d 0%, #1a1a1a 100%);
+            border-radius: 10px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .profile-email {
+            color: #a855f7;
+            font-size: 1rem;
+        }
+
+        .profile-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 10px;
+        }
+
+        .profile-section h3 {
+            color: #a855f7;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .profile-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .data-item {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #a855f7;
+        }
+
+        .data-item label {
+            display: block;
+            color: #a855f7;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        /* Estilos para o histórico de pedidos */
+        .historico-pedidos {
+            margin-top: 30px;
+        }
+
+        .pedido-card {
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .pedido-header {
+            background: linear-gradient(135deg, #2d1b3d 0%, #1a1a1a 100%);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pedido-numero {
+            color: #a855f7;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .pedido-data {
+            color: #fff;
+            font-size: 0.9rem;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .pedido-status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: 'Bebas Neue', sans-serif;
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        .pedido-conteudo {
+            padding: 15px;
+        }
+
+        .pedido-itens {
+            margin-bottom: 15px;
+        }
+
+        .item-pedido {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-nome {
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .item-quantidade {
+            color: #a855f7;
+            font-size: 0.9rem;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .item-valor {
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .pedido-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 2px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .total-label {
+            color: #a855f7;
+            font-family: 'Rock Salt', cursive;
+            font-size: 1.1rem;
+        }
+
+        .total-valor {
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .pedido-acoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-rastreio {
+            background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-rastreio:hover {
+            background: linear-gradient(135deg, #6b21a8 0%, #a855f7 100%);
+            transform: translateY(-2px);
+        }
+
+        .sem-pedidos {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .data-item span {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .profile-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+            color: white;
+        }
+
+        .btn-logout {
+            background: #2d1b3d;
+            color: #a855f7;
+            border: 1px solid #a855f7;
+        }
+
+        .btn-edit:hover, .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .order-history {
+            margin-top: 20px;
+        }
+
+        .order-card {
+            background: #1a1a1a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .status-entregue {
+            background: #22c55e33;
+            color: #22c55e;
+        }
+
+        .status-processando {
+            background: #eab30833;
+            color: #eab308;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+            }
+
+            .profile-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 32px; gap: 32px;">
+        <div style="display: flex; align-items: center; gap: 32px;">
+            <div class="logo" style="margin-left: 0;">
+                <a href="index.html" style="color: inherit; text-decoration: none;">
+                    <img src="img/logo_oficial-removebg-preview.png" alt="Scorpion Street Logo" style="height: 100px; width: auto; vertical-align: middle;">
+                </a>
+            </div>
+            <nav>
+                <ul style="display: flex; gap: 18px; margin: 0; list-style: none;">
+                    <li><button class="nav-btn" onclick="window.location.href='novidades.html'">Novidades</button></li>
+                    <li><button class="nav-btn" onclick="window.location.href='Coleção.html'">Coleção</button></li>
+                    <li><button class="nav-btn" onclick="window.location.href='Sobrenos.html'">Sobre nós</button></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <button class="nav-btn" onclick="window.location.href='suporte.html'">Suporte</button>
+            <button id="carrinho-btn" class="nav-btn" style="position: relative; margin-left: 18px;" onclick="window.location.href='carrinho.html'">
+                🛒 <span id="carrinho-count" style="background: #a855f7; color: #fff; border-radius: 50%; padding: 2px 8px; font-size: 0.9rem; position: absolute; top: -8px; right: -12px;">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="profile-container">
+        <!-- Cabeçalho do Perfil -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                👤
+            </div>
+            <div class="profile-info">
+                <h2 class="profile-name" id="userName">Carregando...</h2>
+                <p class="profile-email" id="userEmail">carregando@email.com</p>
+            </div>
+        </div>
+
+        <!-- Informações Pessoais -->
+        <div class="profile-section">
+            <h3>Informações Pessoais</h3>
+            <div class="profile-data">
+                <div class="data-item">
+                    <label>Nome Completo</label>
+                    <span id="fullName">Carregando...</span>
+                </div>
+                <div class="data-item">
+                    <label>Telefone</label>
+                    <span id="phone">Carregando...</span>
+                </div>
+                <div class="data-item">
+                    <label>CPF</label>
+                    <span id="cpf">Carregando...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="profile-section">
+            <h3>Endereço de Entrega</h3>
+            <div class="profile-data">
+                <div class="data-item">
+                    <label>Rua</label>
+                    <span id="street">Carregando...</span>
+                </div>
+                <div class="data-item">
+                    <label>Número</label>
+                    <span id="number">Carregando...</span>
+                </div>
+                <div class="data-item">
+                    <label>Cidade</label>
+                    <span id="city">Carregando...</span>
+                </div>
+                <div class="data-item">
+                    <label>Estado</label>
+                    <span id="state">Carregando...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico de Pedidos -->
+        <div class="profile-section">
+            <h3>Histórico de Pedidos</h3>
+            <div class="order-history">
+                <div class="order-card">
+                    <div>
+                        <strong>Pedido #1234</strong>
+                        <p>3 itens - R$ 299,90</p>
+                    </div>
+                    <span class="order-status status-entregue">Entregue</span>
+                </div>
+                <div class="order-card">
+                    <div>
+                        <strong>Pedido #1235</strong>
+                        <p>2 itens - R$ 199,90</p>
+                    </div>
+                    <span class="order-status status-processando">Em processamento</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações do Perfil -->
+        <div class="profile-actions">
+            <button class="profile-btn btn-edit" onclick="editarPerfil()">Editar Perfil</button>
+            <button class="profile-btn btn-logout" onclick="fazerLogout()">Sair</button>
+        </div>
+    </main>
+
+    <script>
+        // Verificar se o usuário está logado antes de carregar a página
+        function verificarAutorizacao() {
+            const usuarioLogado = localStorage.getItem('usuarioLogado');
+            if (!usuarioLogado) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Verificar autorização quando a página carrega
+        verificarAutorizacao();
+
+        // Função para carregar dados do usuário
+        function carregarDadosUsuario() {
+            // Verificar novamente a autorização
+            verificarAutorizacao();
+            
+            // Carregar dados do usuário do localStorage
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            const userAddress = JSON.parse(localStorage.getItem('userAddress')) || {};
+
+            // Atualizando os elementos na página
+            document.getElementById('userName').textContent = userData.nome || 'Usuário';
+            document.getElementById('userEmail').textContent = userData.email || 'Email não informado';
+            document.getElementById('fullName').textContent = userData.nome || 'Nome não informado';
+            document.getElementById('cpf').textContent = userData.cpf || 'CPF não informado';
+            
+            // Adicionar idade calculada
+            if (userData.dataNascimento) {
+                const idade = userData.idade;
+                document.getElementById('phone').textContent = `${idade} anos`;
+            } else {
+                document.getElementById('phone').textContent = 'Idade não informada';
+            }
+
+            // Dados do endereço do CEP
+            document.getElementById('street').textContent = userAddress.rua || 'Endereço não informado';
+            document.getElementById('city').textContent = userAddress.cidade || 'Cidade não informada';
+            document.getElementById('state').textContent = userAddress.estado || 'Estado não informado';
+        }
+
+        // Função para editar perfil
+        function editarPerfil() {
+            // Implementar lógica de edição
+            alert('Funcionalidade de edição em desenvolvimento');
+        }
+
+        // Função para fazer logout
+        function fazerLogout() {
+            // Limpar todos os dados do usuário
+            localStorage.removeItem('usuarioLogado');
+            localStorage.removeItem('bemVindoNome');
+            localStorage.removeItem('userData');
+            localStorage.removeItem('userAddress');
+            window.location.href = 'index.html';
+        }
+
+        // Carregar dados quando a página for carregada
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarDadosUsuario();
+        });
+    </script>
+</body>
+</html>

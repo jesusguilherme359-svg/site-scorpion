@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes - Camisa The Boss</title>
+    <link rel="stylesheet" href="css/ver-mais.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="uiverse-btn" onclick="window.location.href='index.html'" style="position: absolute; top: 20px; left: 20px; z-index: 1000;">Voltar</button>
+    <header style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <h1 style="font-family: 'Rock Salt', cursive; color: white; margin: 0;">Detalhes da Camisa</h1>
+    </header>
+    <main>
+        <section class="detalhes-produto">
+            <div class="imagens-produto">
+                <div class="carousel">
+                    <img src="img/dinheiro e veneno- coatas (1).png" class="carousel-img active" alt="The Boss Frente">
+                    <img src="img/veneno e dinheiro- frente (1).png" class="carousel-img" alt="The Boss Costas">
+                    <img src="img/TAMANHO_CAMISAS-removebg-preview.png" class="carousel-img" alt="The Boss Costas">
+                    <!-- Adicione mais imagens aqui se desejar -->
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+                </div>
+            </div>
+            <div class="info-produto">
+                <h2 class="nome-produto">Camisa dinheiro e veneno</h2>
+                <p class="valor-produto">Valor: R$ 89,90</p>
+                <p class="parcelamento">Parcelamento: até 3x de R$ 29,97 sem juros</p>
+                <p class="tamanhos">Tamanhos disponíveis: P, M, G, GG</p>
+                <p class="entrega">Data estimada de entrega: 10 a 15 dias úteis</p>
+                <button class="uiverse-btn" style="margin-top:18px; font-size: 1rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px;" onclick="salvarProdutoELinkar()">Compre agora</button>
+               
+            </div>
+        </section>
+        <script>
+        async function salvarProdutoELinkar() {
+            var nome = document.querySelector('.nome-produto').textContent.trim();
+            var img = document.querySelector('.carousel-img.active').getAttribute('src');
+            var valorText = document.querySelector('.valor-produto') ? document.querySelector('.valor-produto').textContent : '';
+            var preco = valorText.replace(/[^\\d,\\.\\-]/g, '').replace(',', '.');
+            try {
+                const resp = await fetch('api/get_produto_por_nome.php?nome=' + encodeURIComponent(nome) + '&create_if_missing=1&preco=' + encodeURIComponent(preco) + '&imagem=' + encodeURIComponent(img));
+                const dados = await resp.json();
+                const id_produto = (dados && dados.success) ? dados.id : null;
+                localStorage.setItem('produtoSelecionado', JSON.stringify({ id_produto: id_produto, nome: nome, img: img, preco: preco }));
+            } catch (e) {
+                localStorage.setItem('produtoSelecionado', JSON.stringify({ id_produto: null, nome: nome, img: img, preco: preco }));
+            }
+            window.location.href = 'compre-agora.html';
+        }
+        let currentImg = 0;
+        const imgs = document.querySelectorAll('.carousel-img');
+        function showImg(idx, dir = 0) {
+            imgs.forEach((img, i) => {
+                img.classList.remove('active', 'slide-left', 'slide-right', 'zoomed');
+                if (i === idx) {
+                    img.classList.add('active');
+                } else if (dir === 1 && i === currentImg) {
+                    img.classList.add('slide-left');
+                } else if (dir === -1 && i === currentImg) {
+                    img.classList.add('slide-right');
+                }
+            });
+        }
+        function moveCarousel(dir) {
+            let prevImg = currentImg;
+            currentImg += dir;
+            if (currentImg < 0) currentImg = imgs.length - 1;
+            if (currentImg >= imgs.length) currentImg = 0;
+            showImg(currentImg, dir);
+        }
+        // Zoom ao clicar
+        imgs.forEach(img => {
+            img.addEventListener('click', function() {
+                if (img.classList.contains('zoomed')) {
+                    img.classList.remove('zoomed');
+                } else {
+                    imgs.forEach(i => i.classList.remove('zoomed'));
+                    img.classList.add('zoomed');
+                }
+            });
+        });
+        // Inicializa o carrossel
+        showImg(currentImg);
+        </script>
+    </main>
+</body>
+</html>

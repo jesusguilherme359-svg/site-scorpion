@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Scorpion</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script src="js/login.js" defer></script>
+  <style>
+    .card-title span, .form-label, .submit-btn, .btn-text {
+      font-family: 'Bebas Neue', sans-serif;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .toggle-form {
+        text-align: center;
+        margin-top: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .toggle-form:hover {
+        text-decoration: underline;
+    }
+
+    /* Estilo para campo de senha inválido */
+    input[type="password"].invalid {
+      border-color: #ff4444 !important;
+      box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
+    }
+
+    /* Animação de shake para senhas que não correspondem */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="window.location.href='index.html'" class="submit-btn" style="position: absolute; top: 20px; left: 20px; max-width: 120px; z-index: 1000; color: #a855f7; font-family: 'Rock Salt', cursive;">Voltar</button>
+  <!-- From Uiverse.io by pharmacist-sabot --> 
+<div class="glitch-form-wrapper">
+  <!-- Formulário de Login -->
+  <form class="glitch-card" id="loginForm" action="process_login.php" method="POST">
+    <div class="card-header">
+      <div class="card-title">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+          <path
+            d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+          ></path>
+          <path
+            d="M12 11.5a3 3 0 0 0 -3 2.824v1.176a3 3 0 0 0 6 0v-1.176a3 3 0 0 0 -3 -2.824z"
+          ></path>
+        </svg>
+        <span>LOGIN</span>
+      </div>
+
+      <div class="card-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="card-body">
+      <div class="form-message" id="loginMessage"></div>
+      <div class="form-group">
+        <input
+          type="email"
+          id="loginEmail"
+          name="email"
+          required=""
+          placeholder=""
+        />
+        <label for="loginEmail" class="form-label"
+          >EMAIL</label
+        >
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          id="loginPassword"
+          name="senha"
+          required=""
+          placeholder=""
+        />
+        <label for="loginPassword" class="form-label"
+          >SENHA</label
+        >
+      </div>
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">ENTRAR</span>
+      </button>
+
+      <div class="toggle-form" onclick="toggleForms()">
+        Não tem uma conta? Cadastre-se
+      </div>
+    </div>
+  </form>
+
+  <!-- Formulário de Cadastro -->
+  <form class="glitch-card" id="cadastroForm" style="display: none;" action="cadastrar_usuario.php" method="POST">
+    <div class="card-header">
+      <div class="card-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+          <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+          <path d="M12 11.5a3 3 0 0 0 -3 2.824v1.176a3 3 0 0 0 6 0v-1.176a3 3 0 0 0 -3 -2.824z"></path>
+        </svg>
+        <span>CADASTRO</span>
+      </div>
+      <div class="card-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="card-body">
+      <div class="form-message" id="cadastroMessage"></div>
+      <div class="form-group">
+        <input type="text" id="nome" name="nome" required placeholder="">
+        <label for="nome" class="form-label">NOME COMPLETO</label>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" name="email" required placeholder="">
+        <label for="email" class="form-label">EMAIL</label>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="senha" name="senha" required placeholder="">
+        <label for="senha" class="form-label">SENHA</label>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="confirmarSenha" name="confirmarSenha" required placeholder="">
+        <label for="confirmarSenha" class="form-label">CONFIRMAR SENHA</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="cpf" name="cpf" required placeholder="" maxlength="14">
+        <label for="cpf" class="form-label">CPF</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="telefone" name="telefone" placeholder="">
+        <label for="telefone" class="form-label">TELEFONE</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="cep" name="cep" required placeholder="" maxlength="9">
+        <label for="cep" class="form-label">CEP</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="endereco" name="endereco" placeholder="" readonly>
+        <label for="endereco" class="form-label">ENDEREÇO</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="cidade" name="cidade" placeholder="" readonly>
+        <label for="cidade" class="form-label">CIDADE</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="estado" name="estado" placeholder="" readonly>
+        <label for="estado" class="form-label">ESTADO</label>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">CADASTRAR</span>
+      </button>
+
+      <div class="toggle-form" onclick="toggleForms()">
+        Já tem uma conta? Faça login
+      </div>
+    </div>
+  </form>
+</div>
+
+</body>
+<script>
+// Helpers de UI
+function showMessage(id, text, type = 'error') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'form-message show ' + (type === 'success' ? 'success' : 'error');
+}
+
+function clearMessage(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = '';
+  el.className = 'form-message';
+}
+
+// Alternar formulários
+function toggleForms() {
+  const loginForm = document.getElementById('loginForm');
+  const cadastroForm = document.getElementById('cadastroForm');
+  if (loginForm.style.display === 'none') {
+    loginForm.style.display = 'block';
+    cadastroForm.style.display = 'none';
+  } else {
+    loginForm.style.display = 'none';
+    cadastroForm.style.display = 'block';
+  }
+}
+
+// Validações
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+function validateCPF(cpf) {
+  cpf = cpf.replace(/\D/g, '');
+  if (cpf.length !== 11) return false;
+  if (/^(\d)\1+$/.test(cpf)) return false; // todos iguais
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += parseInt(cpf.charAt(i)) * (10 - i);
+  let rev = 11 - (sum % 11);
+  if (rev === 10 || rev === 11) rev = 0;
+  if (rev !== parseInt(cpf.charAt(9))) return false;
+  sum = 0;
+  for (let i = 0; i < 10; i++) sum += parseInt(cpf.charAt(i)) * (11 - i);
+  rev = 11 - (sum % 11);
+  if (rev === 10 || rev === 11) rev = 0;
+  if (rev !== parseInt(cpf.charAt(10))) return false;
+  return true;
+}
+
+function checkPasswordStrength(pwd) {
+  if (!pwd || pwd.length < 8) return false;
+  if (!/[0-9]/.test(pwd)) return false;
+  if (!/[A-Za-z]/.test(pwd)) return false;
+  return true;
+}
+
+// Formatações e CEP (mantidos)
+document.getElementById('cpf').addEventListener('input', function(e) {
+  let cpf = e.target.value.replace(/\D/g, '');
+  if (cpf.length <= 11) {
+    e.target.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+});
+
+document.getElementById('telefone').addEventListener('input', function(e) {
+  let tel = e.target.value.replace(/\D/g, '');
+  if (tel.length <= 11) {
+    e.target.value = tel.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  }
+});
+
+document.getElementById('cep').addEventListener('input', function(e) {
+  let cep = e.target.value.replace(/\D/g, '');
+  if (cep.length <= 8) {
+    e.target.value = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+  }
+});
+
+document.getElementById('cep').addEventListener('blur', function(e) {
+  const cep = e.target.value.replace(/\D/g, '');
+  if (cep.length === 8) {
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.erro) {
+          document.getElementById('endereco').value = data.logradouro;
+          document.getElementById('cidade').value = data.localidade;
+          document.getElementById('estado').value = data.uf;
+        }
+      });
+  }
+});
+
+// Cadastro: validações cliente e envio via fetch, com auto-login
+document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  clearMessage('cadastroMessage');
+
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const senha = document.getElementById('senha').value;
+  const confirmarSenha = document.getElementById('confirmarSenha').value;
+  const cpf = document.getElementById('cpf').value.trim();
+  const cep = document.getElementById('cep').value.trim();
+
+  if (!nome) return showMessage('cadastroMessage','Por favor informe seu nome.','error');
+  if (!validateEmail(email)) return showMessage('cadastroMessage','Email inválido.','error');
+  if (senha !== confirmarSenha) return showMessage('cadastroMessage','As senhas não correspondem.','error');
+  if (!checkPasswordStrength(senha)) return showMessage('cadastroMessage','Senha fraca. Use ao menos 8 caracteres, incluindo letras e números.','error');
+  if (!validateCPF(cpf)) return showMessage('cadastroMessage','CPF inválido.','error');
+
+  const form = document.getElementById('cadastroForm');
+  const formData = new FormData(form);
+
+  fetch('cadastrar_usuario.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(async data => {
+    if (data.success) {
+      showMessage('cadastroMessage', data.message || 'Cadastro realizado com sucesso!', 'success');
+      // auto-login: chamar process_login.php
+      try {
+        const loginParams = new URLSearchParams();
+        loginParams.append('email', email);
+        loginParams.append('senha', senha);
+
+        const resp = await fetch('process_login.php', {
+          method: 'POST',
+          body: loginParams
+        });
+        const loginData = await resp.json();
+        if (loginData.success) {
+          // salvar no localStorage
+          localStorage.setItem('usuarioLogado', 'true');
+          localStorage.setItem('userData', JSON.stringify(loginData.data));
+          localStorage.setItem('bemVindoNome', loginData.data.nome || '');
+          showMessage('loginMessage','Login efetuado com sucesso! Redirecionando...','success');
+          setTimeout(() => window.location.href = 'index.html', 900);
+        } else {
+          // só alterna para login com mensagem
+          toggleForms();
+          showMessage('loginMessage', loginData.message || 'Cadastro OK. Faça login.', 'success');
+        }
+      } catch (err) {
+        console.error(err);
+        toggleForms();
+        showMessage('loginMessage','Cadastro realizado. Faça login manualmente.','success');
+      }
+    } else {
+      showMessage('cadastroMessage', data.message || 'Erro ao cadastrar usuário','error');
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    showMessage('cadastroMessage','Erro ao conectar com o servidor','error');
+  });
+});
+
+// Login: enviar, mostrar mensagens e salvar dados
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  clearMessage('loginMessage');
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const senha = document.getElementById('loginPassword').value;
+
+  if (!validateEmail(email)) return showMessage('loginMessage','Email inválido.','error');
+  if (!senha) return showMessage('loginMessage','Informe sua senha.','error');
+
+  const params = new URLSearchParams();
+  params.append('email', email);
+  params.append('senha', senha);
+
+  try {
+    const resp = await fetch('process_login.php', { method: 'POST', body: params });
+    const data = await resp.json();
+    if (data.success) {
+      // salvar no localStorage
+      localStorage.setItem('usuarioLogado', 'true');
+      localStorage.setItem('userData', JSON.stringify(data.data));
+      localStorage.setItem('bemVindoNome', data.data.nome || '');
+      showMessage('loginMessage','Login efetuado com sucesso! Redirecionando...','success');
+      setTimeout(() => window.location.href = 'index.html', 700);
+    } else {
+      showMessage('loginMessage', data.message || 'Email ou senha incorretos','error');
+    }
+  } catch (err) {
+    console.error(err);
+    showMessage('loginMessage','Erro ao conectar com o servidor','error');
+  }
+});
+</script>
+</html>

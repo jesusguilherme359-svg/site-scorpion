@@ -1,0 +1,66 @@
+body {
+    background-image: url('../img/fundo\ final.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.titulo-central-meta {
+    color: #fff;
+    text-align: center;
+    margin-top: 15vh;
+    font-size: 2em;
+    font-family: 'Rock Salt', cursive, sans-serif;
+}
+
+.mensagem-central {
+    max-width: 600px;
+    margin: 40px auto;
+    background: rgba(0,0,0,0.7);
+    border-radius: 18px;
+    padding: 32px 24px;
+    box-shadow: 0 2px 12px #a855f7a0;
+    text-align: center;
+}
+.mensagem-central p {
+    font-size: 1.3em;
+    color: #fff;
+    margin-bottom: 24px;
+}
+.mensagem-central img {
+    width: 120px;
+    margin-bottom: 18px;
+}
+.mensagem-central blockquote {
+    color: #a855f7;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.uiverse-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    padding: 7px 18px;
+    background: rgba(17,17,17,0.7); /* fundo escuro translúcido para contraste */
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #a855f7a0;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    position: relative;
+    z-index: 2;
+}
+.uiverse-btn:hover {
+    background: #a855f7;
+    color: #fbfbfb;
+    box-shadow: 0 8px 32px #a855f7cc;
+}
+
+.botao-voltar {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 1000;
+}

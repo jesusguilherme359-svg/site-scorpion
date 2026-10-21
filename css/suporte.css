@@ -1,0 +1,140 @@
+body {
+    background-image: url('../img/fundo\ final.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.titulo-suporte {
+    color: #fff;
+    text-align: center;
+    margin-top: 8vh;
+    font-size: 2.5em;
+    font-family: 'Rock Salt', cursive, sans-serif;
+}
+
+.cabecalho-suporte {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0;
+}
+
+.card-suporte {
+    width: 90vw;
+    max-width: 1200px;
+    height: 180px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1.3em;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    font-family: 'Rock Salt', cursive, sans-serif;
+    padding-left: 32px;
+    padding-top: 24px;
+    position: relative;
+}
+
+.card-suporte p {
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Rock Salt', cursive, sans-serif;
+    margin-left: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.card-suporte span {
+    display: block;
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Rock Salt', cursive, sans-serif;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.uiverse-btn {
+    padding: 8px 18px !important;
+    font-size: 13px !important;
+    border-radius: 7px;
+    border: 1px solid rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #fff;
+    box-shadow: 0 0 0 0 transparent;
+    transition: all 0.2s ease-in;
+}
+.uiverse-btn:hover {
+    background: rgb(138, 28, 201);
+    box-shadow: 0 0 30px 5px rgba(126, 0, 236, 0.815);
+    transition: all 0.2s ease-out;
+}
+.uiverse-btn:active {
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.2s ease-in;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row;
+    position: absolute;
+    left: 24px;
+    bottom: 16px;
+    padding: 6px 14px;
+    border-radius: 7px;
+    border: 1px solid rgb(255, 255, 255);
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #fff;
+    box-shadow: 0 0 0 0 transparent;
+    transition: all 0.2s ease-in;
+}
+.whatsapp-btn:hover {
+    background: rgb(138, 28, 201);
+    box-shadow: 0 0 30px 5px rgba(126, 0, 236, 0.815);
+    transition: all 0.2s ease-out;
+}
+.whatsapp-btn a {
+    color: #ffffff;
+    font-size: 0.8em;
+    font-family: 'Rock Salt', cursive, sans-serif;
+    text-decoration: none;
+    background: transparent;
+    z-index: 3;
+}
+
+.whatsapp-btn .icone-whatsapp {
+    position: static;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 6px #0008);
+}
+
+/* Removendo estilos da barra superior e logo */
+
+/* Junta os botões do canto superior direito */
+header > div:last-child {
+    display: flex;
+    gap: 0;
+}
+header > div:last-child .nav-btn {
+    margin-right: 0;
+    border-radius: 7px 7px 7px 7px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="css/carrinho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="uiverse-btn" onclick="window.location.href='index.html'" style="position: absolute; top: 20px; left: 20px; z-index: 1000;">Voltar</button>
+    <div class="carrinho-container">
+        <h1 class="carrinho-titulo">Seu Carrinho</h1>
+        <ul id="carrinho-lista" class="carrinho-lista"></ul>
+    <p id="carrinho-vazio" class="carrinho-vazio">Seu carrinho está vazio.</p>
+    <button class="uiverse-btn" id="finalizar-btn" style="margin-top: 24px; width: 100%; font-size: 1.2rem; display: none;">Finalizar Compra</button>
+    </div>
+    <script src="css/carrinho.js"></script>
+    <script>
+        // Exibir itens do carrinho na página carrinho.html com botões de quantidade
+        function renderizarCarrinho() {
+            var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            var lista = document.getElementById('carrinho-lista');
+            var vazio = document.getElementById('carrinho-vazio');
+            var finalizarBtn = document.getElementById('finalizar-btn');
+            lista.innerHTML = '';
+            if (carrinho.length === 0) {
+                vazio.style.display = 'block';
+                if (finalizarBtn) finalizarBtn.style.display = 'none';
+            } else {
+                vazio.style.display = 'none';
+                if (finalizarBtn) finalizarBtn.style.display = 'block';
+                carrinho.forEach(function(item, idx) {
+                    var li = document.createElement('li');
+                    li.className = 'carrinho-item';
+                    li.innerHTML = `
+                        <img src="${item.img}" alt="${item.nome}" style="height:80px; width:80px; vertical-align:middle; margin-right:18px; border-radius:12px;">
+                        <span style="vertical-align:middle; margin-right:16px; font-size:1.5rem; color:#a855f7;">${item.nome}</span>
+                        <button class="quant-btn menos" data-idx="${idx}">−</button>
+                        <span class="quantidade" id="quantidade-${idx}" style="margin: 0 8px; min-width: 24px; display: inline-block; text-align: center;">${item.quantidade || 1}</span>
+                        <button class="quant-btn mais" data-idx="${idx}">+</button>
+                    `;
+                    lista.appendChild(li);
+                });
+            }
+            // Adiciona eventos aos botões
+            document.querySelectorAll('.quant-btn.menos').forEach(function(btn) {
+                btn.onclick = function() {
+                    alterarQuantidade(parseInt(this.dataset.idx), -1);
+                };
+            });
+            document.querySelectorAll('.quant-btn.mais').forEach(function(btn) {
+                btn.onclick = function() {
+                    alterarQuantidade(parseInt(this.dataset.idx), 1);
+                };
+            });
+        }
+
+        // Finalizar compra: envia pedido para o backend
+        document.getElementById('finalizar-btn').onclick = async function() {
+            var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData || !userData.id || carrinho.length === 0) {
+                alert('Carrinho vazio ou usuário não identificado.');
+                return;
+            }
+            // Envia pedido para o backend
+            const resp = await fetch('api/finalizar_pedido.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id_usuario=${encodeURIComponent(userData.id)}&itens=${encodeURIComponent(JSON.stringify(carrinho))}`
+            });
+            const result = await resp.json();
+            if (result.success) {
+                // Limpa carrinho local
+                localStorage.setItem('carrinho', '[]');
+                alert('Pedido realizado com sucesso!');
+                window.location.href = 'pedido-enviado.html';
+            } else {
+                alert('Erro ao finalizar pedido: ' + (result.message || 'Tente novamente.'));
+            }
+        };
+
+        function sincronizarCarrinhoBackend(carrinho) {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (!userData || !userData.id) return;
+            const idUsuario = userData.id;
+            // Limpa carrinho no backend antes de atualizar
+            fetch('carrinho_api.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `acao=limpar&id_usuario=${encodeURIComponent(idUsuario)}`
+            }).then(() => {
+                // Adiciona cada item
+                carrinho.forEach(item => {
+                    fetch('carrinho_api.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `acao=adicionar&id_usuario=${encodeURIComponent(idUsuario)}&id_produto=${encodeURIComponent(item.id_produto)}&quantidade=${encodeURIComponent(item.quantidade || 1)}`
+                    });
+                });
+            });
+        }
+
+        function alterarQuantidade(idx, delta) {
+            var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            if (!carrinho[idx]) return;
+            if (!carrinho[idx].quantidade) carrinho[idx].quantidade = 1;
+            carrinho[idx].quantidade += delta;
+            if (carrinho[idx].quantidade < 1) {
+                // Remove item do carrinho
+                carrinho.splice(idx, 1);
+            }
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            renderizarCarrinho();
+            sincronizarCarrinhoBackend(carrinho);
+        }
+        renderizarCarrinho();
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+body {
+    background: url('../img/fundo final.png') center center no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pedido-enviado-container {
+    background: rgba(0,0,0,0.92);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #a855f7a0, 0 2px 8px #0002;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-rastreio {
+    width: 100%;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 12px;
+}
+
+.rastreio-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rastreio-header h2 {
+    color: #a855f7;
+    font-family: 'Rock Salt', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.numero-pedido, .codigo-rastreio {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.status-pedido {
+    margin-top: 30px;
+}
+
+.status-pedido h3 {
+    color: #a855f7;
+    font-family: 'Rock Salt', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.status-item.ativo {
+    opacity: 1;
+    background: rgba(168, 85, 247, 0.2);
+}
+
+.status-item.atual {
+    opacity: 1;
+    background: rgba(168, 85, 247, 0.3);
+    border: 1px solid #a855f7;
+}
+
+.status-icon {
+    font-size: 1.8rem;
+    margin-right: 20px;
+    background: rgba(168, 85, 247, 0.2);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.status-info {
+    flex: 1;
+}
+
+.status-info h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+
+.status-info p {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+}
+
+.botoes-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.rastreio-btn {
+    background: linear-gradient(135deg, #23272F 0%, #a855f7 100%);
+}
+
+.pedido-enviado-titulo {
+    font-family: 'Rock Salt', cursive;
+    color: #a855f7;
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+}
+
+.pedido-enviado-msg {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 32px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.uiverse-btn {
+    background: linear-gradient(135deg, #a855f7 0%, #23272F 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px #a855f7a0, 0 1px 4px #0002;
+    transition: background 0.3s, box-shadow 0.3s;
+    margin-bottom: 18px;
+}
+.uiverse-btn:hover {
+    background: linear-gradient(135deg, #23272F 0%, #a855f7 100%);
+    box-shadow: 0 8px 24px #a855f7cc, 0 2px 8px #0003;
+}

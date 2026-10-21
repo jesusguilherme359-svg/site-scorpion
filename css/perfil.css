@@ -1,0 +1,331 @@
+/* Estilos gerais */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Estilos do container principal */
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #111;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #a855f7a0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cabeçalho do perfil */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #2d1b3d 0%, #1a1a1a 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.profile-header:hover {
+    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Avatar do perfil */
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* Informações do perfil */
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 10px;
+    font-family: 'Rock Salt', cursive;
+}
+
+.profile-email {
+    color: #a855f7;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Seções do perfil */
+.profile-section {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.profile-section:hover {
+    background: rgba(168, 85, 247, 0.15);
+    transform: translateY(-2px);
+}
+
+.profile-section h3 {
+    color: #a855f7;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-family: 'Rock Salt', cursive;
+}
+
+/* Grid de dados do perfil */
+.profile-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 15px 0;
+}
+
+/* Itens de dados */
+.data-item {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #a855f7;
+    transition: all 0.3s ease;
+}
+
+.data-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.2);
+}
+
+.data-item label {
+    display: block;
+    color: #a855f7;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.data-item span {
+    color: white;
+    font-size: 1rem;
+    font-family: 'Rock Salt', cursive;
+}
+
+/* Botões e ações */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.profile-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #a855f7 0%, #6b21a8 100%);
+    color: white;
+    flex: 2;
+}
+
+.btn-logout {
+    background: #2d1b3d;
+    color: #a855f7;
+    border: 1px solid #a855f7;
+    flex: 1;
+}
+
+.btn-edit:hover, .btn-logout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
+}
+
+/* Histórico de pedidos */
+.order-history {
+    margin-top: 20px;
+}
+
+.order-card {
+    background: #1a1a1a;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.2);
+}
+
+.order-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.status-entregue {
+    background: #22c55e33;
+    color: #22c55e;
+}
+
+.status-processando {
+    background: #eab30833;
+    color: #eab308;
+}
+
+/* Loading estados */
+.loading {
+    opacity: 0.7;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-info {
+        text-align: center;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-btn {
+        width: 100%;
+    }
+
+    .order-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .profile-data {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animações de transição */
+.fade-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+/* Estilo para mensagens de feedback */
+.feedback-message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+.feedback-success {
+    background: #22c55e33;
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.feedback-error {
+    background: #ef444433;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeitos de hover adicionais */
+.data-item:hover label {
+    color: #9333ea;
+}
+
+.profile-section:hover h3 {
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.btn-edit:active, .btn-logout:active {
+    transform: translateY(1px);
+}
